@@ -13,53 +13,56 @@
 
       <!--Add Burger Form-->
       <h3>Make Burger</h3>
-    <form action="/" method="POST">
-      <form class="create-form">
-        <div class="form-group">
-          <input type="text" id="burg" name="name" placeholder="Add Burger">
-        </div>
-        <button type="submit" class="btn btn-danger btn-lg">Create Burger</button>
+      <form action="/" method="POST">
+        <form class="create-form">
+          <div class="form-group">
+            <input type="text" id="burg" name="name" placeholder="Add Burger">
+          </div>
+          <button type="submit" class="btn btn-danger btn-lg">Create Burger</button>
+        </form>
       </form>
-    </form>
+    </div>
+
+  </div>
+
 </div>
 
-    </div>
+<!--To Devour-->
+<div class="row text-center">
+  <div class="col-xs-6">
+    <h2>Burgers Waiting...</h2>
+    <!--HB-->
+    <ul>
+      {{#each burgers}}
+      {{#unless this.devoured}}
+      <form action="{{this.id}}?_method=PUT" method="POST">
+        <p> <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
+          {{ this.burger_name }}
+          <button class="btn btn-warning change-devour">Eat Me!</button>
+        </p>
+      </form>
+      {{/unless}}
+      {{/each}}
+    </ul>
 
   </div>
 
-  <!--To Devour-->
-  <div class="row text-center">
-    <div class="col-xs-6">
-      <h2>Burgers Waiting...</h2>
-      <!--HB-->
-      <ul>
-        {{#each burgers}}
-        {{#unless this.devoured}}
-        <form action="{{this.id}}?_method=PUT" method="POST">
-       <p> {{ this.burger_name }} 
-       <button class="btn btn-warning change-devour">Eat Me!</button>
-       </p>
-        </form>
-        {{/unless}}
-        {{/each}}
-      </ul>
 
-    </div>
+  <!--Already Devoured-->
+  <div class="col-xs-6">
+    <h2>Burgers Devoured!</h2>
+    <!--HB-->
+    <ul>
+      {{#each burgers}}
+      {{#if this.devoured}}
+      <p> <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
+        {{ this.burger_name }} 
+        </p>
+      {{/if}}
+      {{/each}}
+    </ul>
 
-
-    <!--Already Devoured-->
-    <div class="col-xs-6">
-      <h2>Burgers Devoured!</h2>
-      <!--HB-->
-      <ul>
-        {{#each burgers}}
-        {{#if this.devoured}}
-        <p> {{ this.burger_name }} </p>
-        {{/if}}
-        {{/each}}
-      </ul>
-
-    </div>
   </div>
+</div>
 </div> <br><br>
 <footer class="container-fluid text-center">TK 2018</footer>
