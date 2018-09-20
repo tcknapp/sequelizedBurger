@@ -13,13 +13,14 @@
 
       <!--Add Burger Form-->
       <h3>Make Burger</h3>
-
+    <form action="/" method="POST">
       <form class="create-form">
         <div class="form-group">
           <input type="text" id="burg" name="name" placeholder="Add Burger">
         </div>
         <button type="submit" class="btn btn-danger btn-lg">Create Burger</button>
       </form>
+    </form>
 </div>
 
     </div>
@@ -33,8 +34,12 @@
       <!--HB-->
       <ul>
         {{#each burgers}}
-        {{#unless devoured}}
-       <p> {{> burgers/burger-block devoured=true }} </p>
+        {{#unless this.devoured}}
+        <form action="{{this.id}}?_method=PUT" method="POST">
+       <p> {{ this.burger_name }} 
+       <button class="btn btn-warning change-devour">Eat Me!</button>
+       </p>
+        </form>
         {{/unless}}
         {{/each}}
       </ul>
@@ -48,8 +53,8 @@
       <!--HB-->
       <ul>
         {{#each burgers}}
-        {{#if devoured}}
-        <p> {{ burger_name }} </p>
+        {{#if this.devoured}}
+        <p> {{ this.burger_name }} </p>
         {{/if}}
         {{/each}}
       </ul>

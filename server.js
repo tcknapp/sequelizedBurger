@@ -1,6 +1,7 @@
 //Dependencies
 var express = require("express");
 var bodyParser = require("body-parser");
+//(try to fix errors)
 var methodOverride = require("method-override")
 
 //Express app
@@ -23,6 +24,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // parse application/json
 app.use(bodyParser.json());
 
+//(trying these for errors)
 app.use(methodOverride("_method"));
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 

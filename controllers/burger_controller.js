@@ -21,8 +21,8 @@ module.exports = function (app) {
   //Post/create burger to API
   app.post("/", function (req, res) {
     db.burgers.create({
-      burger_name: req.body.burger_name,
-    }).then(function() {
+      burger_name: req.body.name,
+    }).then(function () {
       res.redirect("/");
     });
   });
@@ -37,20 +37,9 @@ module.exports = function (app) {
         where: {
           id: req.params.id
         }
-      }).then(function() {
+      }).then(function () {
         res.redirect("/");
         //res.json(data);
       });
-  });
-
-  //Delete route
-  app.delete("/:id", function (req, res) {
-    db.burgers.destroy({
-      where: {
-        id: req.params.id
-      }
-    }).then(function (data) {
-      res.redirect("/");
-    });
   });
 };
